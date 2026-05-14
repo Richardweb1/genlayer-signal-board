@@ -1,4 +1,4 @@
-# AI BTC Sentinel — GenLayer + Vercel
+# AI BTC Sentinel  GenLayer 
 
 This is a cleaned Vercel-ready version of the Replit export.
 
