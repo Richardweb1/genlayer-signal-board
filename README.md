@@ -1,45 +1,29 @@
-# AI BTC Sentinel  GenLayer 
+# GenLayer Signal Board
 
-This is a cleaned Vercel-ready version of the Replit export.
+GenLayer Signal Board is a simple decentralized application built on GenLayer Bradbury Testnet.
 
-## What was changed
+The project allows users to submit BTC market signals on-chain through GenLayer consensus. Users can choose between Bullish, Bearish, or Neutral signals, send a transaction from the frontend, and store the result directly in the smart contract state.
 
-- Kept the project on GenLayer.
-- Removed Replit-only package references such as `catalog:` and workspace packages.
-- Added missing root files required for Vercel/Vite: `package.json`, `index.html`, `vite.config.ts`, `tsconfig.json`, and `vercel.json`.
-- Replaced the missing generated `@workspace/api-client-react` dependency with a simple frontend `fetch('/api/btc/analyze')` call.
-- Replaced the Express API dependency with a Vercel Serverless Function at `api/btc/analyze.ts`.
-- Updated contract method names in the app to match `btc_market_contract.py`:
-  - write: `analyze_market`
-  - read: `get_last_result`
-- Removed Replit comments/references from UI component source files.
+## Features
 
-## Local setup
+- Wallet connection
+- GenLayer Bradbury Testnet integration
+- Submit Bullish, Bearish, or Neutral signals
+- On-chain signal storage
+- Read current signal from the contract
+- React frontend with TypeScript
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Wagmi
+- GenLayer JS SDK
+- TailwindCSS
+
+## Local Development
 
 ```bash
 npm install
 npm run dev
-```
-
-## Build check
-
-```bash
-npm run build
-```
-
-## Deploy to Vercel
-
-1. Push this folder to GitHub.
-2. Import the GitHub repository in Vercel.
-3. Framework preset: Vite.
-4. Build command: `npm run build`.
-5. Output directory: `dist`.
-
-## Optional environment variables
-
-Set these in Vercel if you deploy a new GenLayer contract:
-
-```bash
-VITE_GENLAYER_CONTRACT_ADDRESS=0x...
-GENLAYER_CONTRACT_ADDRESS=0x...
-```
