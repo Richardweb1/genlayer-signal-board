@@ -5,7 +5,8 @@ import { testnetBradbury } from "genlayer-js/chains";
 import { AlertCircle, BrainCircuit, Loader2, RefreshCw, ShieldCheck, TrendingDown, TrendingUp, Minus } from "lucide-react";
 import { WalletConnect } from "@/components/wallet-connect";
 
-const CONTRACT_ADDRESS = (import.meta.env.VITE_GENLAYER_CONTRACT_ADDRESS ?? "") as `0x${string}`;
+const CONTRACT_ADDRESS = (import.meta.env.VITE_GENLAYER_CONTRACT_ADDRESS ??
+  "0x0871319A81d42d7f9c4A8C47236076EF5Fbd60cB") as `0x${string}`;
 
 type Analysis = {
   price_cents: number;
