@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useChainId, useSwitchChain } from "wagmi";
 import { createClient } from "genlayer-js";
 import { testnetBradbury } from "genlayer-js/chains";
 import { AlertCircle, BrainCircuit, Loader2, RefreshCw, ShieldCheck, TrendingDown, TrendingUp, Minus } from "lucide-react";
@@ -31,6 +31,8 @@ function normalize(value: unknown): Analysis {
 
 export default function Home() {
   const { address, isConnected } = useAccount();
+  const chainId = useChainId();
+  const { switchChainAsync } = useSwitchChain();
   const [analysis, setAnalysis] = useState(EMPTY);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,6 +55,9 @@ export default function Home() {
     if (!configured) return setError("Deploy the contract and set VITE_GENLAYER_CONTRACT_ADDRESS first.");
     setLoading(true); setError(null); setTxHash(null);
     try {
+      if (chainId !== 4221) {
+        await switchChainAsync({ chainId: 4221 });
+      }
       const client = createClient({ chain: testnetBradbury, account: address as `0x${string}` });
       const hash = await client.writeContract({ address: CONTRACT_ADDRESS, functionName: "analyze_market", args: [], value: 0n });
       setTxHash(String(hash));
