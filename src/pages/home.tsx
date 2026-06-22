@@ -61,8 +61,6 @@ export default function Home() {
       const client = createClient({ chain: testnetBradbury, account: address as `0x${string}` });
       const hash = await client.writeContract({ address: CONTRACT_ADDRESS, functionName: "analyze_market", args: [], value: 0n });
       setTxHash(String(hash));
-      await client.waitForTransactionReceipt({ hash, retries: 120, interval: 5000 });
-      await readResult();
     } catch (e) { setError(e instanceof Error ? e.message : "Analysis transaction failed."); }
     finally { setLoading(false); }
   };
@@ -86,8 +84,8 @@ export default function Home() {
           <div className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4"><div className="mb-2 flex items-center gap-2 text-xs text-violet-200"><BrainCircuit className="h-4 w-4"/> Validator reasoning</div><p className="text-sm leading-relaxed text-white/60">{analysis.reasoning}</p></div>
           {error && <div className="mt-4 flex gap-2 rounded-xl border border-rose-400/20 bg-rose-500/10 p-3 text-xs text-rose-200"><AlertCircle className="h-4 w-4 shrink-0"/>{error}</div>}
           {!configured && <p className="mt-4 text-xs text-amber-200">Contract deployment required. Copy .env.example to .env after deployment.</p>}
-          <div className="mt-5 grid grid-cols-[1fr_auto] gap-3"><button onClick={analyze} disabled={loading || !isConnected || !configured} className="rounded-xl bg-violet-500 px-4 py-3 text-sm font-bold disabled:opacity-40">{loading ? <span className="flex items-center justify-center gap-2"><Loader2 className="h-4 w-4 animate-spin"/>Waiting for finality…</span> : "Run consensus analysis"}</button><button aria-label="Refresh result" onClick={readResult} disabled={!configured || loading} className="rounded-xl border border-white/10 px-4 disabled:opacity-40"><RefreshCw className="h-4 w-4"/></button></div>
-          {txHash && <p className="mt-3 break-all font-mono text-[10px] text-cyan-200/60">Transaction: {txHash}</p>}
+          <div className="mt-5 grid grid-cols-[1fr_auto] gap-3"><button onClick={analyze} disabled={loading || !isConnected || !configured} className="rounded-xl bg-violet-500 px-4 py-3 text-sm font-bold disabled:opacity-40">{loading ? <span className="flex items-center justify-center gap-2"><Loader2 className="h-4 w-4 animate-spin"/>Submitting transaction…</span> : "Run consensus analysis"}</button><button aria-label="Refresh result" onClick={readResult} disabled={!configured || loading} className="rounded-xl border border-white/10 px-4 disabled:opacity-40"><RefreshCw className="h-4 w-4"/></button></div>
+          {txHash && <div className="mt-3 font-mono text-[10px] text-cyan-200/60"><p>Consensus in progress. Refresh after the transaction is accepted.</p><p className="mt-1 break-all">Transaction: {txHash}</p></div>}
         </div>
       </section>
     </div>
