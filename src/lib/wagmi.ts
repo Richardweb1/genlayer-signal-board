@@ -2,9 +2,9 @@ import { createConfig, http } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { defineChain } from "viem";
 
-export const studionet = defineChain({
-  id: 61999,
-  name: "GenLayer Studio",
+export const bradbury = defineChain({
+  id: 4221,
+  name: "GenLayer Bradbury Testnet",
   nativeCurrency: {
     name: "GEN Token",
     symbol: "GEN",
@@ -12,26 +12,23 @@ export const studionet = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ["https://studio.genlayer.com/api"],
+      http: ["https://rpc-bradbury.genlayer.com"],
     },
   },
   blockExplorers: {
     default: {
-      name: "GenLayer Studio",
-      url: "https://studio.genlayer.com",
+      name: "GenLayer Explorer",
+      url: "https://explorer-bradbury.genlayer.com",
     },
   },
   testnet: true,
 });
 
-export const BTC_MARKET_CONTRACT_ADDRESS =
-  "0xd797A8E330978314d90a6731bBdd9DfFa964D748";
-
 export const wagmiConfig = createConfig({
-  chains: [studionet],
+  chains: [bradbury],
   connectors: [injected({ shimDisconnect: true })],
   transports: {
-    [studionet.id]: http("https://studio.genlayer.com/api"),
+    [bradbury.id]: http("https://rpc-bradbury.genlayer.com"),
   },
   ssr: false,
 });
