@@ -10,6 +10,7 @@ and accept the leader result only when the verdict agrees.
 - Network: GenLayer Bradbury Testnet (chain ID 4221)
 - RPC: https://rpc-bradbury.genlayer.com
 - Explorer: https://explorer-bradbury.genlayer.com
+- Live app: https://genlayer-signal-board.vercel.app/
 - Contract address: [`0xDB945ca005Abd2a7c098Ccd07cBd3802b79Ef1E5`](https://explorer-bradbury.genlayer.com/address/0xDB945ca005Abd2a7c098Ccd07cBd3802b79Ef1E5)
 - Deployment transaction: [`0x8dcd2d5878526881fd6d7cea3672693b97a9cb8d1c13f0179d1d4bbd3a896c73`](https://explorer-bradbury.genlayer.com/tx/0x8dcd2d5878526881fd6d7cea3672693b97a9cb8d1c13f0179d1d4bbd3a896c73) (`FINALIZED`, `AGREE`)
 - Successful CONTRACT_CALL transaction: [`0x1b0f60e64c32db16e71b2d228d73373a5777cf51221d5ef4ea30726a4fc53d72`](https://explorer-bradbury.genlayer.com/tx/0x1b0f60e64c32db16e71b2d228d73373a5777cf51221d5ef4ea30726a4fc53d72) (`FINALIZED`, `AGREE`, `FINISHED_WITH_RETURN`)
